@@ -143,7 +143,9 @@ class CursorCont extends ChangeNotifier {
   bool get isFloatingCursorActive => floatingCursorTextPosition.value != null;
 
   CursorStyle _style;
+
   CursorStyle get style => _style;
+
   set style(CursorStyle value) {
     if (_style == value) return;
     _style = value;
@@ -232,7 +234,7 @@ class CursorCont extends ChangeNotifier {
   }
 
   void _onColorTick() {
-    color.value = _style.color.withValues(alpha: _blinkOpacityController.value);
+    color.value = _style.color.withAlpha(_blinkOpacityController.value.toInt());
     blink.value = show.value && _blinkOpacityController.value > 0;
   }
 }
