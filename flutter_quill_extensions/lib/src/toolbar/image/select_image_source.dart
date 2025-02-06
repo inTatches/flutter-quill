@@ -39,6 +39,9 @@ class SelectImageSourceDialog extends StatelessWidget {
               leading: const Icon(Icons.link),
               onTap: () => Navigator.of(context).pop(InsertImageSource.link),
             ),
+            const SizedBox(
+              height: 64,
+            )
           ],
         ),
       ),
