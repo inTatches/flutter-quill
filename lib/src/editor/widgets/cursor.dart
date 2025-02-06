@@ -234,7 +234,7 @@ class CursorCont extends ChangeNotifier {
   }
 
   void _onColorTick() {
-    color.value = _style.color.withAlpha(_blinkOpacityController.value.toInt());
+    color.value = _style.color.withAlpha(200);
     blink.value = show.value && _blinkOpacityController.value > 0;
   }
 }

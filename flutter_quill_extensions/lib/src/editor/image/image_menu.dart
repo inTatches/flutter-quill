@@ -10,7 +10,6 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../common/utils/element_utils/element_utils.dart';
 import '../../common/utils/string.dart';
 import 'config/image_config.dart';
-import 'image_load_utils.dart';
 import 'image_save_utils.dart';
 import 'widgets/image.dart' show ImageTapWrapper, getImageStyleString;
 import 'widgets/image_resizer.dart' show ImageResizer;
@@ -94,24 +93,6 @@ class ImageOptionsMenu extends StatelessWidget {
                 );
               },
             ),
-          ListTile(
-            leading: const Icon(Icons.copy_all_outlined),
-            title: Text(context.loc.copy),
-            onTap: () async {
-              Navigator.of(context).pop();
-              controller.copiedImageUrl = ImageUrl(
-                imageSource,
-                getImageStyleString(controller),
-              );
-
-              final imageBytes = await ImageLoader.instance
-                  .loadImageBytesFromImageProvider(
-                      imageProvider: imageProvider);
-              if (imageBytes != null) {
-                await ClipboardServiceProvider.instance.copyImage(imageBytes);
-              }
-            },
-          ),
           if (!readOnly)
             ListTile(
               leading: Icon(

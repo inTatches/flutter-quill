@@ -10,6 +10,7 @@ class QuillEditorImageEmbedBuilder extends EmbedBuilder {
   QuillEditorImageEmbedBuilder({
     required this.config,
   });
+
   final QuillEditorImageEmbedConfig config;
 
   @override
@@ -63,13 +64,13 @@ class QuillEditorImageEmbedBuilder extends EmbedBuilder {
       },
       child: Builder(
         builder: (context) {
-          if (margin != null) {
-            return Padding(
-              padding: EdgeInsets.all(margin),
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15),
               child: imageWidget,
-            );
-          }
-          return imageWidget;
+            ),
+          );
         },
       ),
     );
