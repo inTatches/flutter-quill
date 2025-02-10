@@ -64,19 +64,22 @@ class QuillEditorImageEmbedBuilder extends EmbedBuilder {
       },
       child: Builder(
         builder: (context) {
-          return Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: Colors.green,
-              image: DecorationImage(
-                image: config.imageProviderBuilder!(context, imageSource)!,
-                fit: BoxFit.cover,
-                alignment: alignment,
-              ),
-            ),
-            alignment: alignment,
+
+          return SizedBox(
             width: width,
             height: height,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: (width == null || height == null) ? MainAxisSize.min : MainAxisSize.max,
+              children: [
+                Flexible(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: imageWidget,
+                  ),
+                )
+              ],
+            ),
           );
         },
       ),
