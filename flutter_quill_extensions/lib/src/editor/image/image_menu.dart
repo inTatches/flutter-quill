@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart' show showCupertinoModalPopup;
 import 'package:flutter/foundation.dart' show kIsWeb, Uint8List;
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart'
-    show ImageUrl, QuillController, StyleAttribute, getEmbedNode;
+    show BlockEmbed, ImageUrl, QuillController, StyleAttribute, getEmbedNode;
 import 'package:flutter_quill/flutter_quill_internal.dart';
 import 'package:flutter_quill/translations.dart';
 
@@ -59,10 +59,22 @@ class ImageOptionsMenu extends StatelessWidget {
                     return FlutterQuillLocalizationsWidget(
                       child: ImageResizer(
                         onImageResize: (width, height) {
-                          final res = getEmbedNode(
-                            controller,
-                            controller.selection.start,
-                          );
+                          var index = 0;
+                          final delta = controller.document.toDelta();
+                          final doc = delta.toList();
+                          for (var i = 0; i < doc.length; i++) {
+                            final operation = doc[i];
+
+                            if (operation.value.toString().contains(imageSource)) {
+                              break;
+                            }
+
+                            if (!operation.value.toString().contains(BlockEmbed.imageType)) {
+                              index += operation.value.toString().length;
+                            } else {
+                              index++;
+                            }
+                          }
 
                           final attr = replaceStyleStringWithSize(
                             getImageStyleString(controller),
@@ -72,7 +84,7 @@ class ImageOptionsMenu extends StatelessWidget {
                           controller
                             ..skipRequestKeyboard = true
                             ..formatText(
-                              res.offset,
+                              index,
                               1,
                               StyleAttribute(attr),
                             );
@@ -120,15 +132,28 @@ class ImageOptionsMenu extends StatelessWidget {
                   return;
                 }
 
-                final offset = getEmbedNode(
-                  controller,
-                  controller.selection.start,
-                ).offset;
+                var index = 0;
+                final delta = controller.document.toDelta();
+                final doc = delta.toList();
+                for (var i = 0; i < doc.length; i++) {
+                  final operation = doc[i];
+
+                  if (operation.value.toString().contains(imageSource)) {
+                    break;
+                  }
+
+                  if (!operation.value.toString().contains(BlockEmbed.imageType)) {
+                    index += operation.value.toString().length;
+                  } else {
+                    index++;
+                  }
+                }
+
                 controller.replaceText(
-                  offset,
+                  index,
                   1,
                   '',
-                  TextSelection.collapsed(offset: offset),
+                  TextSelection.collapsed(offset: index),
                 );
                 // Call the post remove callback if set
                 await configurations.onImageRemovedCallback.call(imageSource);
