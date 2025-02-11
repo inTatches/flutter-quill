@@ -82,6 +82,9 @@ class FlutterQuillLocalizationsNe extends FlutterQuillLocalizations {
   String get video => 'भिडियो';
 
   @override
+  String get reset => 'Reset';
+
+  @override
   String get undo => 'पूर्ववत गर्नुहोस्';
 
   @override

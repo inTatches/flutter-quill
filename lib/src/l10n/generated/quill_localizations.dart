@@ -329,6 +329,12 @@ abstract class FlutterQuillLocalizations {
   /// **'Video'**
   String get video;
 
+  /// No description provided for @reset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get reset;
+
   /// No description provided for @undo.
   ///
   /// In en, this message translates to:

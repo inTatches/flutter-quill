@@ -82,6 +82,9 @@ class FlutterQuillLocalizationsKu extends FlutterQuillLocalizations {
   String get video => 'ڤیدیۆ';
 
   @override
+  String get reset => 'Reset';
+
+  @override
   String get undo => 'پاشگەزبوونەوە';
 
   @override

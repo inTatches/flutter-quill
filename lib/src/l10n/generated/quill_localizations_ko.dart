@@ -82,6 +82,9 @@ class FlutterQuillLocalizationsKo extends FlutterQuillLocalizations {
   String get video => '비디오';
 
   @override
+  String get reset => 'Reset';
+
+  @override
   String get undo => '되돌리기';
 
   @override

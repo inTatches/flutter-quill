@@ -53,7 +53,7 @@ class QuillToolbarFontSizeButtonState extends QuillToolbarBaseButtonState<
       'large' => context.loc.large,
       'larger' => context.loc.larger,
       'huge' => context.loc.huge,
-      'clear' => context.loc.clear,
+      'clear' => context.loc.reset,
       String() => currentValue,
       null => null,
     };

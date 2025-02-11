@@ -26,6 +26,7 @@
   "camera": "Kamera",
   "video": "Video",
   "undo": "Rückgängig",
+  "reset": "Zurücksetzen",
   "redo": "Wiederherstellen",
   "fontFamily": "Schriftart",
   "fontSize": "Schriftgröße",

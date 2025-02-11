@@ -82,6 +82,9 @@ class FlutterQuillLocalizationsHe extends FlutterQuillLocalizations {
   String get video => 'וידאו';
 
   @override
+  String get reset => 'Reset';
+
+  @override
   String get undo => 'בטל';
 
   @override

@@ -82,6 +82,9 @@ class FlutterQuillLocalizationsZh extends FlutterQuillLocalizations {
   String get video => '录像';
 
   @override
+  String get reset => 'Reset';
+
+  @override
   String get undo => '撤销';
 
   @override

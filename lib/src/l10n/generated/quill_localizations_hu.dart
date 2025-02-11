@@ -82,6 +82,9 @@ class FlutterQuillLocalizationsHu extends FlutterQuillLocalizations {
   String get video => 'Videó';
 
   @override
+  String get reset => 'Reset';
+
+  @override
   String get undo => 'Visszavonás';
 
   @override
