@@ -61,6 +61,9 @@ class FlutterQuillLocalizationsJa extends FlutterQuillLocalizations {
   String get large => '大きい';
 
   @override
+  String get larger => 'Larger';
+
+  @override
   String get huge => 'でっかい';
 
   @override

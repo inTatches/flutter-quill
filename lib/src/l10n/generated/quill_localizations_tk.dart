@@ -61,6 +61,9 @@ class FlutterQuillLocalizationsTk extends FlutterQuillLocalizations {
   String get large => 'Uly';
 
   @override
+  String get larger => 'Larger';
+
+  @override
   String get huge => 'Has uly';
 
   @override

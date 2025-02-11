@@ -61,6 +61,9 @@ class FlutterQuillLocalizationsMs extends FlutterQuillLocalizations {
   String get large => 'Besar';
 
   @override
+  String get larger => 'Larger';
+
+  @override
   String get huge => 'Amat Besar';
 
   @override

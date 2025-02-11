@@ -61,6 +61,9 @@ class FlutterQuillLocalizationsHu extends FlutterQuillLocalizations {
   String get large => 'Nagy';
 
   @override
+  String get larger => 'Larger';
+
+  @override
   String get huge => 'Óriási';
 
   @override

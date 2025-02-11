@@ -61,6 +61,9 @@ class FlutterQuillLocalizationsRu extends FlutterQuillLocalizations {
   String get large => 'Большой';
 
   @override
+  String get larger => 'Larger';
+
+  @override
   String get huge => 'Огромный';
 
   @override

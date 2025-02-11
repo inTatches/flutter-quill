@@ -61,6 +61,9 @@ class FlutterQuillLocalizationsVi extends FlutterQuillLocalizations {
   String get large => 'Lớn';
 
   @override
+  String get larger => 'Larger';
+
+  @override
   String get huge => 'Rất lớn';
 
   @override

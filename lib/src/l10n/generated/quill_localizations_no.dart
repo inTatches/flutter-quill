@@ -61,6 +61,9 @@ class FlutterQuillLocalizationsNo extends FlutterQuillLocalizations {
   String get large => 'Stor';
 
   @override
+  String get larger => 'Larger';
+
+  @override
   String get huge => 'Enorm';
 
   @override

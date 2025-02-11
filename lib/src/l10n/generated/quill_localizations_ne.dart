@@ -61,6 +61,9 @@ class FlutterQuillLocalizationsNe extends FlutterQuillLocalizations {
   String get large => 'ठूलो';
 
   @override
+  String get larger => 'Larger';
+
+  @override
   String get huge => 'विशाल';
 
   @override

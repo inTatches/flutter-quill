@@ -61,6 +61,9 @@ class FlutterQuillLocalizationsEl extends FlutterQuillLocalizations {
   String get large => 'Μεγάλο';
 
   @override
+  String get larger => 'Larger';
+
+  @override
   String get huge => 'Τεράστιο';
 
   @override

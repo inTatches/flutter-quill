@@ -61,6 +61,9 @@ class FlutterQuillLocalizationsKu extends FlutterQuillLocalizations {
   String get large => 'گەورە';
 
   @override
+  String get larger => 'Larger';
+
+  @override
   String get huge => 'زۆر گەورەز';
 
   @override

@@ -61,6 +61,9 @@ class FlutterQuillLocalizationsBg extends FlutterQuillLocalizations {
   String get large => 'Голям';
 
   @override
+  String get larger => 'Larger';
+
+  @override
   String get huge => 'Огромен';
 
   @override

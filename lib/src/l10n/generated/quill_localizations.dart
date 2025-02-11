@@ -287,10 +287,16 @@ abstract class FlutterQuillLocalizations {
   /// **'Large'**
   String get large;
 
+  /// No description provided for @larger.
+  ///
+  /// In en, this message translates to:
+  /// **'Larger'**
+  String get larger;
+
   /// No description provided for @huge.
   ///
   /// In en, this message translates to:
-  /// **'Huge'**
+  /// **'Title'**
   String get huge;
 
   /// No description provided for @clear.

@@ -61,6 +61,9 @@ class FlutterQuillLocalizationsBn extends FlutterQuillLocalizations {
   String get large => 'বড়';
 
   @override
+  String get larger => 'Larger';
+
+  @override
   String get huge => 'বিশাল';
 
   @override

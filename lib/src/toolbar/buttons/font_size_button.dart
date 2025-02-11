@@ -40,6 +40,7 @@ class QuillToolbarFontSizeButtonState extends QuillToolbarBaseButtonState<
         {
           context.loc.small: 'small',
           context.loc.large: 'large',
+          context.loc.larger: 'larger',
           context.loc.huge: 'huge',
           context.loc.clear: '0'
         };
@@ -50,7 +51,9 @@ class QuillToolbarFontSizeButtonState extends QuillToolbarBaseButtonState<
     return switch (currentValue) {
       'small' => context.loc.small,
       'large' => context.loc.large,
+      'larger' => context.loc.larger,
       'huge' => context.loc.huge,
+      'clear' => context.loc.clear,
       String() => currentValue,
       null => null,
     };
@@ -140,7 +143,7 @@ class QuillToolbarFontSizeButtonState extends QuillToolbarBaseButtonState<
             });
           },
           child: Text(
-            fontSize.key.toString(),
+            getLabel(fontSize.key) ?? '',
             style: TextStyle(
               color: fontSize.value == '0' ? options.defaultItemColor : null,
             ),

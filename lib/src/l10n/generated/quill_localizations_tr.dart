@@ -61,6 +61,9 @@ class FlutterQuillLocalizationsTr extends FlutterQuillLocalizations {
   String get large => 'Büyük';
 
   @override
+  String get larger => 'Larger';
+
+  @override
   String get huge => 'Daha Büyük';
 
   @override

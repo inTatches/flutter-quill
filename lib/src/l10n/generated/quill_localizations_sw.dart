@@ -61,6 +61,9 @@ class FlutterQuillLocalizationsSw extends FlutterQuillLocalizations {
   String get large => 'Kubwa';
 
   @override
+  String get larger => 'Larger';
+
+  @override
   String get huge => 'Kubwa Sana';
 
   @override

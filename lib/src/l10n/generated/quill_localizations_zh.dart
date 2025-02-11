@@ -61,6 +61,9 @@ class FlutterQuillLocalizationsZh extends FlutterQuillLocalizations {
   String get large => '大字号';
 
   @override
+  String get larger => 'Larger';
+
+  @override
   String get huge => '超大字号';
 
   @override

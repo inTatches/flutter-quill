@@ -61,6 +61,9 @@ class FlutterQuillLocalizationsPt extends FlutterQuillLocalizations {
   String get large => 'Grande';
 
   @override
+  String get larger => 'Larger';
+
+  @override
   String get huge => 'Gigante';
 
   @override

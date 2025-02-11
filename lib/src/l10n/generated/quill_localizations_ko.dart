@@ -61,6 +61,9 @@ class FlutterQuillLocalizationsKo extends FlutterQuillLocalizations {
   String get large => '크게';
 
   @override
+  String get larger => 'Larger';
+
+  @override
   String get huge => '매우크게';
 
   @override

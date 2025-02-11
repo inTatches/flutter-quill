@@ -61,6 +61,9 @@ class FlutterQuillLocalizationsSk extends FlutterQuillLocalizations {
   String get large => 'Velký';
 
   @override
+  String get larger => 'Larger';
+
+  @override
   String get huge => 'Obrovsky';
 
   @override
