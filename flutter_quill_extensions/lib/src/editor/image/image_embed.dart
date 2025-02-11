@@ -12,6 +12,7 @@ class QuillEditorImageEmbedBuilder extends EmbedBuilder {
   QuillEditorImageEmbedBuilder({
     required this.configurations,
   });
+
   final QuillEditorImageEmbedConfigurations configurations;
 
   @override
@@ -77,13 +78,27 @@ class QuillEditorImageEmbedBuilder extends EmbedBuilder {
       },
       child: Builder(
         builder: (context) {
-          if (margin != null) {
-            return Padding(
-              padding: EdgeInsets.all(margin),
-              child: imageWidget,
-            );
-          }
-          return imageWidget;
+          return Container(
+            padding: const EdgeInsets.all(16),
+            child: SizedBox(
+              width: width,
+              height: height,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: (width == null || height == null)
+                    ? MainAxisSize.min
+                    : MainAxisSize.max,
+                children: [
+                  Flexible(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: imageWidget,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
         },
       ),
     );

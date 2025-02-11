@@ -79,8 +79,6 @@ Image getImageWidgetByImageSource(
       imageProviderBuilder: imageProviderBuilder,
       assetsPrefix: assetsPrefix,
     ),
-    width: width,
-    height: height,
     alignment: alignment,
     errorBuilder: imageErrorWidgetBuilder,
   );

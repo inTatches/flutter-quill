@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_quill/flutter_quill_internal.dart' show isDesktopApp;
 import 'package:flutter_quill/translations.dart';
 
 import '../../editor/image/image_embed_types.dart';
@@ -23,7 +22,7 @@ class SelectImageSourceDialog extends StatelessWidget {
               leading: const Icon(Icons.photo_sharp),
               onTap: () => Navigator.of(context).pop(InsertImageSource.gallery),
             ),
-            ListTile(
+            /*ListTile(
               title: Text(context.loc.camera),
               subtitle: Text(
                 context.loc.takeAPhotoUsingYourCamera,
@@ -31,7 +30,7 @@ class SelectImageSourceDialog extends StatelessWidget {
               leading: const Icon(Icons.camera),
               enabled: !isDesktopApp,
               onTap: () => Navigator.of(context).pop(InsertImageSource.camera),
-            ),
+            ),*/
             ListTile(
               title: Text(context.loc.link),
               subtitle: Text(
@@ -39,6 +38,9 @@ class SelectImageSourceDialog extends StatelessWidget {
               ),
               leading: const Icon(Icons.link),
               onTap: () => Navigator.of(context).pop(InsertImageSource.link),
+            ),
+            const SizedBox(
+              height: 64,
             ),
           ],
         ),
