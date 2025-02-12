@@ -65,11 +65,15 @@ class ImageOptionsMenu extends StatelessWidget {
                           for (var i = 0; i < doc.length; i++) {
                             final operation = doc[i];
 
-                            if (operation.value.toString().contains(imageSource)) {
+                            if (operation.value
+                                .toString()
+                                .contains(imageSource)) {
                               break;
                             }
 
-                            if (!operation.value.toString().contains(BlockEmbed.imageType)) {
+                            if (!operation.value
+                                .toString()
+                                .contains(BlockEmbed.imageType)) {
                               index += operation.value.toString().length;
                             } else {
                               index++;
@@ -99,22 +103,6 @@ class ImageOptionsMenu extends StatelessWidget {
                 );
               },
             ),
-          ListTile(
-            leading: const Icon(Icons.copy_all_outlined),
-            title: Text(context.loc.copy),
-            onTap: () async {
-              Navigator.of(context).pop();
-              controller.copiedImageUrl = ImageUrl(
-                imageSource,
-                getImageStyleString(controller),
-              );
-
-              final imageBytes = await _loadImageBytesFromImageProvider();
-              if (imageBytes != null) {
-                await ClipboardServiceProvider.instance.copyImage(imageBytes);
-              }
-            },
-          ),
           if (!isReadOnly)
             ListTile(
               leading: Icon(
@@ -142,7 +130,9 @@ class ImageOptionsMenu extends StatelessWidget {
                     break;
                   }
 
-                  if (!operation.value.toString().contains(BlockEmbed.imageType)) {
+                  if (!operation.value
+                      .toString()
+                      .contains(BlockEmbed.imageType)) {
                     index += operation.value.toString().length;
                   } else {
                     index++;

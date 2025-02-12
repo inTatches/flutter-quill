@@ -213,7 +213,7 @@ class _LinkDialogState extends State<_LinkDialog> {
               style: widget.dialogTheme?.inputTextStyle,
               decoration: InputDecoration(
                 labelText: context.loc.link,
-                hintText: context.loc.pleaseEnterTheLinkURL,
+                hintText: 'https://intatches.com',
                 labelStyle: widget.dialogTheme?.labelTextStyle,
                 floatingLabelStyle: widget.dialogTheme?.labelTextStyle,
               ),
