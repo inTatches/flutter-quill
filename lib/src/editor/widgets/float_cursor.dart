@@ -21,7 +21,7 @@ class FloatingCursorPainter {
 
   void paint(Canvas canvas) {
     final floatingCursorRect = this.floatingCursorRect;
-    final floatingCursorColor = style.color.withOpacity(0.75);
+    final floatingCursorColor = style.color.withAlpha(191);
     if (floatingCursorRect == null) return;
     canvas.drawRRect(
       RRect.fromRectAndRadius(floatingCursorRect, _kFloatingCaretRadius),
