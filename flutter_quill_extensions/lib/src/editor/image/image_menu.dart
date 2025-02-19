@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart' show showCupertinoModalPopup;
 import 'package:flutter/foundation.dart' show kIsWeb, Uint8List;
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart'
-    show BlockEmbed, ImageUrl, QuillController, StyleAttribute, getEmbedNode;
+    show BlockEmbed, QuillController, StyleAttribute;
 import 'package:flutter_quill/flutter_quill_internal.dart';
 import 'package:flutter_quill/translations.dart';
 
