@@ -736,6 +736,7 @@ class EditableTextLine extends RenderObjectWidget {
       this.devicePixelRatio,
       this.cursorCont,
       this.inlineCodeStyle,
+      this.controller,
       {super.key});
 
   final Line line;
@@ -751,6 +752,7 @@ class EditableTextLine extends RenderObjectWidget {
   final double devicePixelRatio;
   final CursorCont cursorCont;
   final InlineCodeStyle inlineCodeStyle;
+  final QuillController controller;
 
   @override
   RenderObjectElement createElement() {
@@ -760,16 +762,18 @@ class EditableTextLine extends RenderObjectWidget {
   @override
   RenderObject createRenderObject(BuildContext context) {
     return RenderEditableTextLine(
-        line,
-        textDirection,
-        textSelection,
-        enableInteractiveSelection,
-        hasFocus,
-        devicePixelRatio,
-        _getPadding(),
-        color,
-        cursorCont,
-        inlineCodeStyle);
+      line,
+      textDirection,
+      textSelection,
+      enableInteractiveSelection,
+      hasFocus,
+      devicePixelRatio,
+      _getPadding(),
+      color,
+      cursorCont,
+      inlineCodeStyle,
+      controller,
+    );
   }
 
   @override
@@ -812,6 +816,7 @@ class RenderEditableTextLine extends RenderEditableBox {
     this.color,
     this.cursorCont,
     this.inlineCodeStyle,
+    this.controller,
   );
 
   RenderBox? _leading;
@@ -831,6 +836,7 @@ class RenderEditableTextLine extends RenderEditableBox {
   late Rect _caretPrototype;
   InlineCodeStyle inlineCodeStyle;
   final Map<TextLineSlot, RenderBox> children = <TextLineSlot, RenderBox>{};
+  final QuillController controller;
 
   Iterable<RenderBox> get _children sync* {
     if (_leading != null) {
@@ -1447,10 +1453,12 @@ class RenderEditableTextLine extends RenderEditableBox {
             affinity: textSelection.base.affinity,
           );
     _cursorPainter.paint(
+      ///todo
       context.canvas,
       effectiveOffset,
       position,
       lineHasEmbed,
+      controller,
     );
   }
 

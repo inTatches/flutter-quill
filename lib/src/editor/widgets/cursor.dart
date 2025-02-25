@@ -1,8 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_quill/flutter_quill.dart';
+import 'package:flutter_quill/src/controller/quill_controller.dart';
 
 import '../../common/utils/platform.dart';
+import '../../document/nodes/embeddable.dart';
 import 'box.dart';
 
 /// Style properties of editing cursor.
@@ -69,16 +72,16 @@ class CursorStyle {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is CursorStyle &&
-          runtimeType == other.runtimeType &&
-          color == other.color &&
-          backgroundColor == other.backgroundColor &&
-          width == other.width &&
-          height == other.height &&
-          radius == other.radius &&
-          offset == other.offset &&
-          opacityAnimates == other.opacityAnimates &&
-          paintAboveText == other.paintAboveText;
+          other is CursorStyle &&
+              runtimeType == other.runtimeType &&
+              color == other.color &&
+              backgroundColor == other.backgroundColor &&
+              width == other.width &&
+              height == other.height &&
+              radius == other.radius &&
+              offset == other.offset &&
+              opacityAnimates == other.opacityAnimates &&
+              paintAboveText == other.paintAboveText;
 
   @override
   int get hashCode =>
@@ -101,7 +104,8 @@ class CursorCont extends ChangeNotifier {
     required this.show,
     required CursorStyle style,
     required TickerProvider tickerProvider,
-  })  : _style = style,
+  })
+      : _style = style,
         blink = ValueNotifier(false),
         color = ValueNotifier(style.color) {
     _blinkOpacityController =
@@ -132,7 +136,7 @@ class CursorCont extends ChangeNotifier {
   bool _targetCursorVisibility = false;
 
   final ValueNotifier<TextPosition?> _floatingCursorTextPosition =
-      ValueNotifier(null);
+  ValueNotifier(null);
 
   ValueNotifier<TextPosition?> get floatingCursorTextPosition =>
       _floatingCursorTextPosition;
@@ -234,7 +238,8 @@ class CursorCont extends ChangeNotifier {
   }
 
   void _onColorTick() {
-    color.value = _style.color.withAlpha(200).withOpacity(_blinkOpacityController.value);
+    color.value =
+        _style.color.withAlpha(200).withOpacity(_blinkOpacityController.value);
     blink.value = show.value && _blinkOpacityController.value > 0;
   }
 }
@@ -258,21 +263,19 @@ class CursorPainter {
   /// Paints cursor on [canvas] at specified [position].
   /// [offset] is global top left (x, y) of text line
   /// [position] is relative (x) in text line
-  void paint(
-    Canvas canvas,
-    Offset offset,
-    TextPosition position,
-    bool lineHasEmbed,
-  ) {
+  void paint(Canvas canvas,
+      Offset offset,
+      TextPosition position,
+      bool lineHasEmbed,
+      QuillController controller) {
     // relative (x, y) to global offset
     var relativeCaretOffset = editable!.getOffsetForCaret(position, prototype);
     if (lineHasEmbed && relativeCaretOffset == Offset.zero) {
       relativeCaretOffset = editable!.getOffsetForCaret(
           TextPosition(
-              offset: position.offset - 1, affinity: position.affinity),
-          prototype);
-      // Hardcoded 6 as estimate of the width of a character
-      relativeCaretOffset =
+              offset: position.offset - 1, affinity: position.affinity), prototype);
+          // Hardcoded 6 as estimate of the width of a character
+          relativeCaretOffset =
           Offset(relativeCaretOffset.dx + 6, relativeCaretOffset.dy);
     }
 
@@ -315,12 +318,20 @@ class CursorPainter {
     }
 
     final pixelPerfectOffset = _getPixelPerfectCursorOffset(caretRect);
+
     if (!pixelPerfectOffset.isFinite) {
       return;
     }
     caretRect = caretRect.shift(pixelPerfectOffset);
 
-    final paint = Paint()..color = color;
+    final node = controller.document.queryChild(controller.selection.start).node;
+
+    if (node != null && node is Embeddable) {
+      caretRect = Rect.fromLTWH(caretRect.left, 0, caretRect.width, caretRect.height);
+    }
+
+    final paint = Paint()
+      ..color = color;
     if (style.radius == null) {
       canvas.drawRect(caretRect, paint);
     } else {
@@ -329,19 +340,17 @@ class CursorPainter {
     }
   }
 
-  Offset _getPixelPerfectCursorOffset(
-    Rect caretRect,
-  ) {
+  Offset _getPixelPerfectCursorOffset(Rect caretRect,) {
     final caretPosition = editable!.localToGlobal(caretRect.topLeft);
     final pixelMultiple = 1.0 / devicePixelRatio;
 
     final pixelPerfectOffsetX = caretPosition.dx.isFinite
         ? (caretPosition.dx / pixelMultiple).round() * pixelMultiple -
-            caretPosition.dx
+        caretPosition.dx
         : caretPosition.dx;
     final pixelPerfectOffsetY = caretPosition.dy.isFinite
         ? (caretPosition.dy / pixelMultiple).round() * pixelMultiple -
-            caretPosition.dy
+        caretPosition.dy
         : caretPosition.dy;
 
     return Offset(pixelPerfectOffsetX, pixelPerfectOffsetY);

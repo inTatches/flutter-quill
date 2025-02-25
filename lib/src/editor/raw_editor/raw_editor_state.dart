@@ -656,19 +656,21 @@ class QuillRawEditorState extends EditorState
       composingRange: composingRange.value,
     );
     final editableTextLine = EditableTextLine(
-        node,
-        null,
-        textLine,
-        _getHorizontalSpacingForLine(node, _styles),
-        _getVerticalSpacingForLine(node, _styles),
-        _textDirection,
-        controller.selection,
-        widget.config.selectionColor,
-        widget.config.enableInteractiveSelection,
-        _hasFocus,
-        MediaQuery.devicePixelRatioOf(context),
-        _cursorCont,
-        _styles!.inlineCode!);
+      node,
+      null,
+      textLine,
+      _getHorizontalSpacingForLine(node, _styles),
+      _getVerticalSpacingForLine(node, _styles),
+      _textDirection,
+      controller.selection,
+      widget.config.selectionColor,
+      widget.config.enableInteractiveSelection,
+      _hasFocus,
+      MediaQuery.devicePixelRatioOf(context),
+      _cursorCont,
+      _styles!.inlineCode!,
+      controller,
+    );
     return editableTextLine;
   }
 
