@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../editor/widgets/link.dart';
 import '../../l10n/extensions/localizations_ext.dart';
-import '../../rules/insert.dart';
 import '../base_button/base_value_button.dart';
-
 import '../config/buttons/link_style_options.dart';
 import '../structs/link_dialog_action.dart';
 import '../theme/quill_dialog_theme.dart';
@@ -143,11 +141,6 @@ class _LinkDialogState extends State<_LinkDialog> {
   late String _link;
   late String _text;
 
-  RegExp get linkRegExp {
-    return widget.linkRegExp ??
-        const AutoFormatMultipleLinksRule().oneLineLinkRegExp;
-  }
-
   late TextEditingController _linkController;
   late TextEditingController _textController;
 
@@ -246,9 +239,6 @@ class _LinkDialogState extends State<_LinkDialog> {
     if (_text.isEmpty || _link.isEmpty) {
       return false;
     }
-    if (!linkRegExp.hasMatch(_link)) {
-      return false;
-    }
 
     return true;
   }
@@ -266,6 +256,10 @@ class _LinkDialogState extends State<_LinkDialog> {
   }
 
   void _applyLink() {
-    Navigator.pop(context, QuillTextLink(_text.trim(), _link.trim()));
+    var link = _link.trim();
+    if (!link.startsWith('https://') && !link.startsWith('http://')) {
+      link = 'https://$link';
+    }
+    Navigator.pop(context, QuillTextLink(_text.trim(), link));
   }
 }
