@@ -14,21 +14,13 @@ Color hexToColor(String? hexString) {
   final buffer = StringBuffer();
   if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
   buffer.write(hexString);
-  return Color(int.tryParse(buffer.toString(), radix: 16) ?? 0xFF000000);
+  final color = Color(int.tryParse(buffer.toString(), radix: 16) ?? 0xFF000000);
+  return color;
 }
 
 // Without the hash sign (`#`).
 String colorToHex(Color color) {
-  int floatToInt8(double x) => (x * 255.0).round() & 0xff;
-
-  final alpha = floatToInt8(color.alpha.toDouble());
-  final red = floatToInt8(color.red.toDouble());
-  final green = floatToInt8(color.green.toDouble());
-  final blue = floatToInt8(color.blue.toDouble());
-
-  return '${alpha.toRadixString(16).padLeft(2, '0')}'
-          '${red.toRadixString(16).padLeft(2, '0')}'
-          '${green.toRadixString(16).padLeft(2, '0')}'
-          '${blue.toRadixString(16).padLeft(2, '0')}'
-      .toUpperCase();
+  final hex =
+      '${color.red.toRadixString(16).padLeft(2, '0')}${color.green.toRadixString(16).padLeft(2, '0')}${color.blue.toRadixString(16).padLeft(2, '0')}';
+  return hex.toUpperCase();
 }

@@ -175,8 +175,8 @@ class QuillToolbarColorButtonState extends QuillToolbarColorBaseButtonState {
     var hex = colorToHex(color);
     hex = '#$hex';
     widget.controller.formatSelection(
-      widget.isBackground ? BackgroundAttribute(hex) : ColorAttribute(hex),
-    );
+        widget.isBackground ? BackgroundAttribute(hex) : ColorAttribute(hex),
+        shouldNotifyListeners: false);
   }
 
   Future<void> _showColorPicker() async {
