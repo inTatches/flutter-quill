@@ -87,7 +87,7 @@ class Document {
     final delta = _rules.apply(RuleType.insert, this, index,
         data: data, len: replaceLength);
     if (insertNewLine) {
-      delta.insert('\n');
+      delta.insert('\n\n\n');
     }
     compose(delta, ChangeSource.local);
     return delta;
