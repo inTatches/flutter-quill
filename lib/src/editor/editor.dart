@@ -8,18 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
+import '../../flutter_quill.dart';
 import '../common/utils/platform.dart';
-import '../controller/quill_controller.dart';
-import '../document/attribute.dart';
-import '../document/document.dart';
 import '../document/nodes/container.dart' as container_node;
-import '../document/nodes/leaf.dart';
-import 'config/editor_config.dart';
-import 'embed/embed_editor_builder.dart';
-import 'raw_editor/config/raw_editor_config.dart';
-import 'raw_editor/raw_editor.dart';
 import 'widgets/box.dart';
-import 'widgets/cursor.dart';
 import 'widgets/delegate.dart';
 import 'widgets/float_cursor.dart';
 import 'widgets/text/text_selection.dart';
@@ -1217,7 +1209,6 @@ class RenderEditor extends RenderEditableContainerBox
     // adjust the dy value by the height of the line. We also add a small margin
     // so that the caret is not too close to the edge of the viewport.
     final endpoints = getEndpointsForSelection(selection);
-
     // when we drag the right handle, we should get the last point
     TextSelectionPoint endpoint;
     if (selection.isCollapsed) {
@@ -1236,6 +1227,16 @@ class RenderEditor extends RenderEditableContainerBox
     final child = childAtPosition(selection.extent);
     const kMargin = 8.0;
 
+    var offsetAdjustment = 0.0;
+
+    for (var i = 0; i < child.container.children.length; i++) {
+      final c = child.container.children.elementAt(i);
+
+      if (c is Embed) {
+        offsetAdjustment = child.size.height;
+      }
+    }
+
     final caretTop = endpoint.point.dy -
         child.preferredLineHeight(TextPosition(
             offset: selection.extentOffset - child.container.documentOffset)) -
@@ -1244,15 +1245,28 @@ class RenderEditor extends RenderEditableContainerBox
         scrollBottomInset;
     final caretBottom =
         endpoint.point.dy + kMargin + offsetInViewport + scrollBottomInset;
+    if (offsetAdjustment > 0) {
+      scrollOffset += offsetAdjustment;
+    }
     double? dy;
     if (caretTop < scrollOffset) {
       dy = caretTop;
-    } else if (caretBottom > scrollOffset + viewportHeight) {
+    } else if (caretBottom + (offsetAdjustment == 0 ? 0 : 150) >
+        scrollOffset + viewportHeight) {
       dy = caretBottom - viewportHeight;
+      if (offsetAdjustment > 0) {
+        dy += 150;
+      }
     }
+
     if (dy == null) {
       return null;
     }
+
+    if (offsetAdjustment > 0) {
+      dy -= offsetAdjustment;
+    }
+
     // Clamping to 0.0 so that the content does not jump unnecessarily.
     return math.max(dy, 0);
   }
