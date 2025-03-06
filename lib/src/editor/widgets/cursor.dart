@@ -264,14 +264,14 @@ class CursorPainter {
       bool lineHasEmbed, QuillController controller) {
     // relative (x, y) to global offset
     var relativeCaretOffset = editable!.getOffsetForCaret(position, prototype);
-    if (lineHasEmbed && relativeCaretOffset == Offset.zero) {
+    if (lineHasEmbed) {
       relativeCaretOffset = editable!.getOffsetForCaret(
           TextPosition(
-              offset: position.offset - 1, affinity: position.affinity),
+              offset: position.offset, affinity: TextAffinity.upstream),
           prototype);
       // Hardcoded 6 as estimate of the width of a character
       relativeCaretOffset =
-          Offset(relativeCaretOffset.dx + 6, relativeCaretOffset.dy);
+          Offset(relativeCaretOffset.dx, relativeCaretOffset.dy);
     }
 
     final caretOffset = relativeCaretOffset + offset;

@@ -5,7 +5,6 @@ import 'package:meta/meta.dart';
 import '../../quill_delta.dart';
 import '../common/structs/offset_value.dart';
 import '../common/structs/segment_leaf_node.dart';
-
 import '../editor/config/search_config.dart';
 import '../editor/embed/embed_editor_builder.dart';
 import '../rules/rule.dart';
@@ -77,14 +76,19 @@ class Document {
   Delta insert(int index, Object? data, {int replaceLength = 0}) {
     assert(index >= 0);
     assert(data is String || data is Embeddable);
+    var insertNewLine = false;
     if (data is Embeddable) {
       data = data.toJson();
+      insertNewLine = true;
     } else if ((data as String).isEmpty) {
       return Delta();
     }
 
     final delta = _rules.apply(RuleType.insert, this, index,
         data: data, len: replaceLength);
+    if (insertNewLine) {
+      delta.insert('\n');
+    }
     compose(delta, ChangeSource.local);
     return delta;
   }
