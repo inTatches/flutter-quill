@@ -20,7 +20,9 @@ Color hexToColor(String? hexString) {
 
 // Without the hash sign (`#`).
 String colorToHex(Color color) {
-  final hex =
-      '${color.red.toRadixString(16).padLeft(2, '0')}${color.green.toRadixString(16).padLeft(2, '0')}${color.blue.toRadixString(16).padLeft(2, '0')}';
+  final rgbColor = color.withValues();
+  final hex = '${(rgbColor.r * 255).round().toRadixString(16).padLeft(2, '0')}'
+      '${(rgbColor.g * 255).round().toRadixString(16).padLeft(2, '0')}'
+      '${(rgbColor.b * 255).round().toRadixString(16).padLeft(2, '0')}';
   return hex.toUpperCase();
 }
