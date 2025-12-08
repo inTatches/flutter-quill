@@ -33,15 +33,23 @@ class BlockEmbed extends Embeddable {
   const BlockEmbed(super.type, String super.data);
 
   static const String imageType = 'image';
+
   static BlockEmbed image(String imageUrl) => BlockEmbed(imageType, imageUrl);
 
   static const String videoType = 'video';
+
   static BlockEmbed video(String videoUrl) => BlockEmbed(videoType, videoUrl);
 
+  static const String audioType = 'audio';
+
+  static BlockEmbed audio(String audioUrl) => BlockEmbed(audioType, audioUrl);
+
   static const String formulaType = 'formula';
+
   static BlockEmbed formula(String formula) => BlockEmbed(formulaType, formula);
 
   static const String customType = 'custom';
+
   static BlockEmbed custom(CustomBlockEmbed customBlock) =>
       BlockEmbed(customType, customBlock.toJsonString());
 }

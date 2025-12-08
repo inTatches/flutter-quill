@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 
 @Deprecated('Invalid extension')
@@ -23,6 +24,21 @@ extension QuillControllerExt on QuillController {
         null,
       )
       ..moveCursorToPosition(index + 1);
+  }
+
+  @Deprecated('Invalid extension method and will be removed.')
+  void insertAudioBlock({
+    required String audioSource,
+  }) {
+    this
+      ..skipRequestKeyboard = true
+      ..replaceText(
+        index,
+        length,
+        BlockEmbed.audio(audioSource),
+        null,
+      );
+    SystemChannels.textInput.invokeMethod('TextInput.hide');
   }
 
   @Deprecated('Invalid extension method and will be removed.')

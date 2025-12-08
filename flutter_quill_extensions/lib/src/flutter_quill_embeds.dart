@@ -1,12 +1,15 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_quill/flutter_quill.dart';
 
+import 'editor/audio/audio_embed.dart';
+import 'editor/audio/config/audio_config.dart';
 import 'editor/image/config/image_config.dart';
 import 'editor/image/image_embed.dart';
 import 'editor/video/config/video_config.dart';
 import 'editor/video/config/video_web_config.dart';
 import 'editor/video/video_embed.dart';
 import 'editor/video/video_web_embed.dart';
+import 'toolbar/audio/config/audio_config.dart';
 import 'toolbar/camera/camera_button.dart';
 import 'toolbar/camera/config/camera_config.dart';
 import 'toolbar/image/config/image_config.dart';
@@ -23,6 +26,8 @@ abstract final class FlutterQuillEmbeds {
         const QuillEditorImageEmbedConfig(),
     QuillEditorVideoEmbedConfig? videoEmbedConfig =
         const QuillEditorVideoEmbedConfig(),
+    QuillEditorAudioEmbedConfig? audioEmbedConfig =
+        const QuillEditorAudioEmbedConfig(),
   }) {
     return [
       if (imageEmbedConfig != null)
@@ -32,6 +37,10 @@ abstract final class FlutterQuillEmbeds {
       if (videoEmbedConfig != null)
         QuillEditorVideoEmbedBuilder(
           config: videoEmbedConfig,
+        ),
+      if (audioEmbedConfig != null)
+        QuillEditorAudioEmbedBuilder(
+          config: audioEmbedConfig,
         ),
     ];
   }
@@ -78,6 +87,8 @@ abstract final class FlutterQuillEmbeds {
         const QuillToolbarImageButtonOptions(),
     QuillToolbarVideoButtonOptions? videoButtonOptions =
         const QuillToolbarVideoButtonOptions(),
+    QuillToolbarAudioButtonOptions? audioButtonOptions =
+        const QuillToolbarAudioButtonOptions(),
     QuillToolbarCameraButtonOptions? cameraButtonOptions,
   }) =>
       [

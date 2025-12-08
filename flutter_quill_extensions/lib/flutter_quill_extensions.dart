@@ -1,6 +1,9 @@
 library;
 
 export 'src/common/extensions/controller_ext.dart';
+export 'src/editor/audio/audio_embed.dart';
+export 'src/editor/audio/audio_embed_types.dart';
+export 'src/editor/audio/config/audio_config.dart';
 export 'src/editor/image/config/image_config.dart';
 export 'src/editor/image/config/image_web_config.dart';
 export 'src/editor/image/image_embed.dart';
@@ -11,6 +14,8 @@ export 'src/editor/video/config/video_web_config.dart';
 export 'src/editor/video/video_embed.dart';
 export 'src/editor/video/video_web_embed.dart';
 export 'src/flutter_quill_embeds.dart';
+export 'src/toolbar/audio/audio_button.dart';
+export 'src/toolbar/audio/config/audio_config.dart';
 export 'src/toolbar/camera/camera_button.dart';
 export 'src/toolbar/camera/camera_types.dart';
 export 'src/toolbar/camera/config/camera_config.dart';
