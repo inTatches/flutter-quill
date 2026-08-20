@@ -4,7 +4,7 @@ import 'package:flutter_sound/flutter_sound.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 Future<String?> audioRecorder(BuildContext context) {
-  bool isRecorderReady = false;
+  var isRecorderReady = false;
 
   String formatTime(Duration duration) {
     String twoDigits(int n) => n.toString().padLeft(2, '0');
@@ -16,7 +16,7 @@ Future<String?> audioRecorder(BuildContext context) {
   }
 
   final recorder = FlutterSoundRecorder();
-  AudioPlayer audioPlayer = AudioPlayer();
+  final audioPlayer = AudioPlayer();
 
   Future initRecorder() async {
     final status = await Permission.microphone.request();
@@ -81,7 +81,7 @@ Future<String?> audioRecorder(BuildContext context) {
                       child: Center(
                         child: Text(
                           formatTime(duration),
-                          style: TextStyle(fontSize: 40),
+                          style: const TextStyle(fontSize: 40),
                         ),
                       ),
                     );
